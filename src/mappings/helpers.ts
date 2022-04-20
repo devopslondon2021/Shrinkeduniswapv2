@@ -66,7 +66,7 @@ export function fetchTokenDecimals(tokenAddress: Address): BigInt {
   let decimalValue = BigInt.fromI32(0)
   let decimalResult = contract.try_decimals()
   if (!decimalResult.reverted) {
-    decimalValue = decimalResult.value
+    decimalValue = BigInt.fromI32(decimalResult.value)
   }
-  return BigInt.fromI32(decimalValue)
+  return BigInt.fromI32(decimalValue.toI32())
 }
