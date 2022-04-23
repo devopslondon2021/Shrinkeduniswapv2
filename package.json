@@ -1,13 +1,13 @@
 {
-  "name": "uniswap-v2-subgraph",
+  "name": "Shrinkeduniswapv2",
   "license": "UNLICENSED",
   "scripts": {
-    "codegen": "graph codegen --output-dir src/types/",
+    "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ devopslondon2021/0x10_shrinked_uniswapv2",
-    "create-local": "graph create --node http://localhost:8020/ devopslondon2021/0x10_shrinked_uniswapv2",
-    "remove-local": "graph remove --node http://localhost:8020/ devopslondon2021/0x10_shrinked_uniswapv2",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 devopslondon2021/0x10_shrinked_uniswapv2"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ devopslondon2021/Shrinkeduniswapv2",
+    "create-local": "graph create --node http://localhost:8020/ devopslondon2021/Shrinkeduniswapv2",
+    "remove-local": "graph remove --node http://localhost:8020/ devopslondon2021/Shrinkeduniswapv2",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 devopslondon2021/Shrinkeduniswapv2"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.29.0",
