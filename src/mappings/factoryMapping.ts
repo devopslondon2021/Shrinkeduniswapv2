@@ -1,9 +1,10 @@
 import { log } from "@graphprotocol/graph-ts";
-import { getOrCreatePair } from "../modules/Pairs";
+import { getOrCreatePair, updatePairReserves } from "../modules/Pairs";
 import { getOrCreateToken } from "../modules/Tokens";
 import { PairCreated } from "../../generated/Factory/Factory";
 import { findEthPerToken } from "../modules/Price";
 import { Token } from "../../generated/schema";
+import { Pair as PairTemplate } from '../../generated/templates'
 
 export function handleNewPair(event: PairCreated): void {
   const pairAddress = event.params.pair;
@@ -18,6 +19,8 @@ export function handleNewPair(event: PairCreated): void {
   token1.derivedETH = findEthPerToken(token1 as Token)
   token0.save();
   token1.save();
+
+  PairTemplate.create(event.params.pair)
 
   log.warning("[NewPair] PairAddress: {}, token0: {}, token1: {}", [
     pairAddress.toHexString(),

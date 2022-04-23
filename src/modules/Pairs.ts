@@ -5,14 +5,13 @@ import { Address } from "@graphprotocol/graph-ts";
 import { Factory } from "../../generated/Factory/Factory";
 import { Pair as PairContract } from "../../generated/Factory/Pair";
 
-export function updatePairReserves(pair: Pair, type: String): void {
+export function updatePairReserves(pair: Pair): void {
   let pairContract = PairContract.bind(Address.fromString(pair.id));
   let reserves = pairContract.try_getReserves();
 
-  if (reserves.reverted) {
-      pair.reserve0 = reserves.value.value0;
-      pair.reserve1 = constants.BIGINT_ZERO;
-    }
+  pair.reserve0 = reserves.value.value0.toBigDecimal();
+  pair.reserve1 = reserves.value.value1.toBigDecimal();
+
   pair.save();
 }
 
@@ -29,7 +28,8 @@ export function getOrCreatePair(
     pair.token1 = token1Addr.toHexString();
 
     pair.save();
-    updatePairReserves(pair, "creatPair");
+    
+    updatePairReserves(pair);
   }
 
   return pair;

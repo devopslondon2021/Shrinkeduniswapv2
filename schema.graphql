@@ -1,7 +1,9 @@
 type Token @entity {
   " Smart contract address of the token"
   id: ID!
+  
   derivedETH: BigDecimal!
+  
   decimals: Int!
 }
 
@@ -16,12 +18,12 @@ type Pair @entity {
   token1: Token!
 
   " Reserve quantity of the first address "
-  reserve0: BigInt!
+  reserve0: BigDecimal!
   
   " Reserve quantity of the second address "
-  reserve1: BigInt!
+  reserve1: BigDecimal!
   
-  reserveETH: BigInt!
+  reserveETH: BigDecimal!
   
   createdAtBlockNumber: String!
 

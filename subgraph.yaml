@@ -29,22 +29,25 @@ dataSources:
         - event: PairCreated(indexed address,indexed address,address,uint256)
           handler: handleNewPair
       file: ./src/mappings/factoryMapping.ts
-# templates:
-#   - kind: ethereum
-#     name: Token
-#     network: mainnet
-#     source:
-#       abi: Token
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.6
-#       language: wasm/assemblyscript
-#       file: ./src/mappings/tokenMapping.ts
-#       entities:
-#         - Token
-#       abis:
-#         - name: Token
-#           file: ./abis/Token.json
-#       eventHandlers:
-#         - event: OwnershipTransferred(indexed address,indexed address)
-#           handler: handleOwnershipTransferred
+templates:
+  - kind: ethereum/contract
+    name: Pair
+    network: mainnet
+    source:
+      abi: Pair
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/modules/Sync.ts
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: Pair
+          file: ./abis/pair.json
+        - name: Factory
+          file: ./abis/factory.json
+      eventHandlers:
+        - event: Sync(uint112,uint112)
+          handler: handleSync

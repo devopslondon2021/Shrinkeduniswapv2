@@ -19,6 +19,7 @@ export const BIGINT_ZERO = BigInt.fromI32(0);
 export const BIGDECIMAL_ZERO = new BigDecimal(BIGINT_ZERO);
 export const DEFAULT_DECIMALS = BigInt.fromI32(18);
 export let ONE_BD = BigDecimal.fromString('1')
+export let ONE_BI = BigInt.fromI32(1)
 export let ZERO_BD = BigDecimal.fromString('0')
 
 export const WETH_ADDRESS = Address.fromString(
