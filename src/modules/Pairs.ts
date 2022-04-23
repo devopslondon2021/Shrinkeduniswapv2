@@ -9,25 +9,10 @@ export function updatePairReserves(pair: Pair, type: String): void {
   let pairContract = PairContract.bind(Address.fromString(pair.id));
   let reserves = pairContract.try_getReserves();
 
-  if (type == "addLiquidity") {
-    if (reserves.reverted) {
+  if (reserves.reverted) {
       pair.reserve0 = reserves.value.value0;
       pair.reserve1 = constants.BIGINT_ZERO;
-    } else {
-      pair.reserve0 = pair.reserve0.plus(reserves.value.value0);
-      pair.reserve1 = pair.reserve0.plus(reserves.value.value1);
     }
-  } else {
-    if (type == "removeLiquidity") {
-      if (reserves.reverted) {
-        pair.reserve0 = reserves.value.value0;
-        pair.reserve1 = constants.BIGINT_ZERO;
-      } else {
-        pair.reserve0 = pair.reserve0.minus(reserves.value.value0);
-        pair.reserve1 = pair.reserve0.minus(reserves.value.value1);
-      }
-    }
-  }
   pair.save();
 }
 
