@@ -24,4 +24,9 @@ type Pair @entity {
   reserveETH: BigInt!
   
   createdAtBlockNumber: String!
+
+  # Price in terms of the asset pair
+  token0Price: BigDecimal!
+  
+  token1Price: BigDecimal!
 }
